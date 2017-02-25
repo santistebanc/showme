@@ -1,0 +1,32 @@
+{
+  "name": "vr-app",
+  "version": "0.1.0",
+  "private": true,
+  "devDependencies": {
+    "concurrently": "^3.3.0",
+    "react-scripts": "0.9.0"
+  },
+  "dependencies": {
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "express": "4.13.x",
+    "cfenv": "1.0.x",
+    "body-parser": "latest",
+    "cors": "latest",
+    "watson-developer-cloud": "latest",
+    "fs": "latest"
+  },
+  "scripts": {
+    "start": "node app.js",
+    "local": "concurrently \"node app.js\" \"react-scripts start\"",
+    "build": "react-scripts build",
+    "bluemix": "npm run build && cf push",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "repository": {},
+  "engines": {
+    "node": "4.x"
+  },
+  "proxy": "http://localhost:6002/"
+}
