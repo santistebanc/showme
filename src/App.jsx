@@ -25,7 +25,7 @@ class App extends Component {
     fetch(`/recognize`,{method: 'POST', headers: {
           'Content-Type': 'application/json'
         }, mode: 'cors',  body: data}).then(function(res){
-        console.log('funcionaaa');
+          console.log('funcionaaa');
       res.json().then(function(data) {
             console.log(data);
             self.setState({result: data});

@@ -1,8 +1,6 @@
-/*eslint-env node*/
+//este archivo se encarga de la comunicación con la API de IBM
+//cambios a este archivo no son detectados por el hot reload, se tiene que reiniciar la app
 
-//------------------------------------------------------------------------------
-// node.js starter application for Bluemix
-//------------------------------------------------------------------------------
 
 // This application uses express as its web server
 // for more info, see: http://expressjs.com
@@ -22,18 +20,11 @@ app.use(express.static(__dirname + '/build'));
 var appEnv = cfenv.getAppEnv();
 
 
-
-console.log('algoo2');
-
-
 var watson = require('watson-developer-cloud');
-var fs = require('fs');
+
 var bodyParser  = require('body-parser');
-var cors = require('cors');
-//
-app.use(cors());
+
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 
 var visual_recognition = watson.visual_recognition({
@@ -42,6 +33,8 @@ var visual_recognition = watson.visual_recognition({
   version_date: '2016-05-20'
 });
 
+
+//API
 app.post('/recognize', function(req, res) {
   visual_recognition.classify({ url: req.body.url }, function(err, result) {
     if (err) {
@@ -59,8 +52,4 @@ app.post('/recognize', function(req, res) {
 app.listen(appEnv.port, '0.0.0.0', function() {
   // print a message when the server starts listening
   console.log("server starting on " + appEnv.url);
-});
-
-app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, './build', 'index.html'));
 });
